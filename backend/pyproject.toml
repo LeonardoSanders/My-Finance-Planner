@@ -1,0 +1,96 @@
+[project]
+name = "backend"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "LeonardoSanders",email = "leonardosanders54@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    "fastapi[standard] (>=0.122.0,<0.123.0)",
+    "alembic (>=1.17.2,<2.0.0)",
+    "psycopg[binary] (>=3.2.13,<4.0.0)",
+    "pyjwt (>=2.10.1,<3.0.0)",
+    "sqlalchemy[asyncio] (>=2.0.44,<3.0.0)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.group.dev.dependencies]
+taskipy = "^1.14.1"
+pytest = "^9.0.1"
+pytest-cov = "^7.0.0"
+factory-boy = "^3.3.3"
+pytest-asyncio = "^1.3.0"
+testcontainers = "^4.13.3"
+freezegun = "^1.5.5"
+black = "^25.11.0"
+isort = "^7.0.0"
+pylint = "^4.0.3"
+pyright = "^1.1.407"
+
+[tool.pyright]
+include = ["backend"]
+exclude = ["**/node_modules",
+    "**/__pycache__",
+    "backend/experimental",
+    "backend/typestubs",
+    "**/.poetry",
+    "**/.venv",
+]
+# ignore = ["backend/oldstuff"]
+defineConstant = { DEBUG = true }
+
+reportMissingImports = "error"
+reportMissingTypeStubs = false
+
+typeCheckingMode = "basic"
+
+[tool.pylint.messages_control]
+max-line-length = 88
+
+disable = [
+    "useless-option-value",
+    "missing-docstring",
+    "missing-module-docstring",
+    "missing-function-docstring",
+    "invalid-envvar-default",
+    "duplicate-code",
+    "unused-import",
+    "unused-argument",
+    "broad-exception-caught",
+    "redefined-builtin",
+    "super-init-not-called",
+    "raise-missing-from",
+    "invalid-name",
+    "too-few-public-methods",
+    "attribute-defined-outside-init",
+    "redefined-outer-name",
+    "unidiomatic-typecheck",
+    "import-error",
+    "unused-variable",
+    "broad-exception-raised",
+    "no-self-argument",
+    "no-method-argument",
+    "arguments-differ",
+    "import-outside-toplevel",
+]
+
+[tool.pytest.ini_options]
+pythonpath = "."
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "--cov --cov-report=term-missing --cov-report=html:htmlcov"
+
+[tool.coverage.run]
+concurrency = ["thread", "greenlet"]
+
+[tool.taskipy.tasks]
+run = 'fastapi dev backend/app.py'
+pre_test = 'black .'
+test = 'pytest -s -x --cov=fastapi_zero -vv'
+post_test = 'coverage html'
