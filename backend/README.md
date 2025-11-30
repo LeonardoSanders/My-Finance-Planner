@@ -7,4 +7,8 @@
  - poetry run ./lint.sh ou ./lint.sh
 
  # Comandos para rodar a aplicação completa (Backend + Postgres)
+  - alembic init migrations
+  - alembic upgrade head
+  - chmod +x ./entrypoint.sh
+  - git update-index --chmod=+x entrypoint.sh
   - docker compose up --build

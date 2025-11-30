@@ -8,6 +8,8 @@ table_registry = registry()
 
 @table_registry.mapped_as_dataclass
 class User:
+    __tablename__ = "users"
+
     id: Mapped[uuid.UUID] = mapped_column(
         init=False, default_factory=uuid.uuid4, primary_key=True
     )

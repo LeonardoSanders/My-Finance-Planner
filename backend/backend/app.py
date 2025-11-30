@@ -9,7 +9,11 @@ from http import HTTPStatus
 
 from fastapi import FastAPI
 
+from backend.routes.login.login import router as login
+
 app = FastAPI()
+
+app.include_router(login)
 
 
 @app.get("/", status_code=HTTPStatus.OK)
