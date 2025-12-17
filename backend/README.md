@@ -9,6 +9,6 @@
  # Comandos para rodar a aplicação completa (Backend + Postgres)
   - alembic init migrations
   - alembic upgrade head
-  - chmod +x ./entrypoint.sh
+  - chmod +x backend/entrypoint.sh
   - git update-index --chmod=+x entrypoint.sh
   - docker compose up --build

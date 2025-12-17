@@ -2,7 +2,7 @@ services:
   backend:
     container_name: backend
     build:
-      context: .
+      context: ./backend
       dockerfile: Dockerfile
       target: dev
     env_file:
@@ -10,16 +10,16 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - .:/app
+      - ./backend:/app
       - /app/.venv
-    depends_on: # O serviço backend só iniciará após o mfp_database
+    depends_on:
       - mfp_database
     entrypoint: ["/app/entrypoint.sh"]
     # Comando sobrescreve o CMD do Dockerfile para ativar o --reload em dev
-    command: uvicorn backend.app:app --host 0.0.0.0 --port 8000 --reload
+    command: uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
 
   mfp_database:
-    image: postgres:17-alpine # Versão específica e leve (alpine) é melhor que latest
+    image: postgres:17-alpine
     env_file:
       - .env
     ports:
