@@ -5,8 +5,8 @@ from alembic import context
 from sqlalchemy import pool
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
-from backend.environments import POSTGRESDB_URL
-from backend.models import table_registry
+from src.config.database.environments import POSTGRESDB_URL
+from src.config.database.models import table_registry
 
 config = context.config
 config.set_main_option("sqlalchemy.url", POSTGRESDB_URL)

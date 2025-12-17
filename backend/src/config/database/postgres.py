@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 
-from backend.environments import POSTGRESDB_URL
+from .environments import POSTGRESDB_URL
 
 engine = create_async_engine(POSTGRESDB_URL)
 

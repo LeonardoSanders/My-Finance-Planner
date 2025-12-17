@@ -1,4 +1,4 @@
-FROM python:3.13-slim AS base
+FROM python:3.12-slim AS base
 
 ENV PYTHONDONTWRITEBYTECODE=1 \
     PYTHONUNBUFFERED=1 \
@@ -44,7 +44,7 @@ RUN poetry install --no-root --without dev
 
 
 # --- ESTÁGIO FINAL (PRODUÇÃO) ---
-FROM python:3.13-slim AS prod
+FROM python:3.12-slim AS prod
 ENV VIRTUAL_ENV=/app/.venv \
     PATH="/app/.venv/bin:$PATH"
 WORKDIR /app

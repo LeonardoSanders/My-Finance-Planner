@@ -9,11 +9,14 @@ from http import HTTPStatus
 
 from fastapi import FastAPI
 
-from backend.routes.login.login import router as login
+from .config.database.models import table_registry
+from .modules.auth.controller import router as auth
+from .modules.users.controller import router as users
 
-app = FastAPI()
+app = FastAPI(title="My Finance Planner")
 
-app.include_router(login)
+app.include_router(auth)
+app.include_router(users)
 
 
 @app.get("/", status_code=HTTPStatus.OK)

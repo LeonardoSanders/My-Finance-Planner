@@ -8,7 +8,7 @@ echo "--- Formatando código com black ---"
 black .
 
 echo "--- Verificando erros com pylint ---"
-pylint backend
+pylint src
 
 echo "--- Verificando tipos com pyright ---"
 pyright .
