@@ -21,3 +21,11 @@ class UserResponseContract(BaseModel):
     lastname: str
     email: EmailStr
     google_id: str
+
+
+class UserUpdateContract(BaseModel):
+    firstname: str
+    lastname: str
+    email: EmailStr
+    google_id: str
+    password: str
