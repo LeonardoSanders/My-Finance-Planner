@@ -3,18 +3,17 @@ from http import HTTPStatus
 from fastapi import APIRouter, HTTPException
 from sqlalchemy import select
 
-from .dependencies import OAuthForm
-
 from ...shared.dependencies.database import Session
 from ...shared.dependencies.google_auth import GoogleUserClaims
 from ...shared.security.schema import Token
 from ...shared.security.token_jwt import create_access_token, verify_password
 from ..users.model import User
+from .dependencies import OAuthForm
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 
 
-@router.post("/google-login", status_code=HTTPStatus.CREATED, response_model=Token)
+@router.post("/google-login", status_code=HTTPStatus.OK, response_model=Token)
 async def google_login(google_data: GoogleUserClaims, session: Session):
     email = google_data["email"]
 
@@ -43,7 +42,7 @@ async def _create_user_from_token(token_data, session: Session):
     return user
 
 
-@router.post("/token-login", status_code=HTTPStatus.CREATED, response_model=Token)
+@router.post("/token-login", status_code=HTTPStatus.OK, response_model=Token)
 async def login_for_access_token(form_data: OAuthForm, session: Session):
     try:
         user_db = await session.scalar(
