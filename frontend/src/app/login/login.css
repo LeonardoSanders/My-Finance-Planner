@@ -1,0 +1,38 @@
+.login-form-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 500px;
+  height: 100%;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+mat-card-title {
+  margin-bottom: 20px;
+  color: #2196F3;
+}
+
+mat-card {
+  width: 100%;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+mat-form-field {
+  width: 100%;
+  margin-bottom: 15px;
+  color: #2196F3;
+}
+
+mat-label {
+  color: #2196F3;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  width: 100%;
+  margin-top: 20px;
+}
