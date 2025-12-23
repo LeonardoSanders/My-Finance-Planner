@@ -4,3 +4,7 @@ class ResourceNotFoundException(Exception):
 
 class InvalidInputException(Exception):
     pass
+
+
+class UnauthorizedException(Exception):
+    pass
